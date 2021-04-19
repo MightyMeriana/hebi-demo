@@ -1,6 +1,5 @@
-export default class Navbar {
-    constructor() {
-        console.log('init Navbar');
-    }
+const burgerButton = document.querySelector('.menu-burger');
 
-}
+burgerButton.addEventListener('click', () => {
+    document.body.classList.toggle('menu-open');
+});

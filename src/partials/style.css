@@ -1,0 +1,56 @@
+.navigation__top {
+    font-size: 1.4rem;
+    height: 8rem;
+    justify-content: space-between;
+    padding: 0 4rem;
+    position: fixed;
+    top:0;
+    display: flex;
+    flex-direction: row;
+    transition: color 1.5s ease;
+    z-index: 6;
+    mix-blend-mode: exclusion;
+}
+nav.menu {
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transition: visibility 1.2s;
+    visibility: hidden;
+    width: 100%;
+    z-index: 5;
+}
+.navigation--open .menu {
+    transition: visibility 0s;
+    visibility: visible;
+}
+.menu__box {
+    color: #fff;
+    left: 0;
+    top: 0;
+    width: 62.3rem;
+    z-index: 1;
+}
+.menu__list {
+    display: flex;
+    flex-direction: column;
+    font-size: 11rem;
+    height: 100%;
+    justify-content: center;
+    line-height: 1;
+    padding-bottom: 15rem;
+    padding-left: 4rem;
+}
+.content {
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.content section img {
+    border-radius: 10px;
+}

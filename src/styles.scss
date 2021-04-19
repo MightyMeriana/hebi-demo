@@ -4,3 +4,337 @@
 @import 'scss/footer';
 
 @import '../assets/fonts/webfonts/stylesheet.css';
+
+$widthSideMenu: 30%;
+$navHeight: 60px;
+$transitionDuration: 0.6s;
+@mixin define-underline-on-hover() {
+  &:after {
+    transform: scaleX(0);
+    transform-origin: right center;
+    background: white;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transition: transform .7s cubic-bezier(.19,1,.22,1);
+    width: 100%;
+  }
+  &:hover:after {
+    transform: scaleX(1);
+    transform-origin: left center;
+    background: #ffffff;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transition: transform .7s cubic-bezier(.19,1,.22,1);
+    width: 100%;
+  }
+}
+@mixin makeButton($background, $color, $hoverBg, $hoverColor) {
+  display: inline-block;
+  padding: .75rem 1.25rem;
+  border-radius: 10rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border: none;
+  letter-spacing: .15rem;
+  transition: all .5s;
+  overflow: hidden;
+  z-index: 1;
+  background: $background;
+  color: $color;
+  &:hover {
+    background: $hoverBg;
+    color: $hoverColor;
+  }
+}
+
+body {
+  background: black;
+  font-family: 'Raleway', sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: $navHeight;
+  mix-blend-mode: exclusion;
+  color: white;
+  transition: color 0.6s ease-out;
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 2.5em;
+    position: relative;
+    top: -2px;
+  }
+  
+  .burger {
+    cursor: pointer;
+  }
+}
+
+
+.side-content {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: $widthSideMenu;
+  display: flex;
+  justify-content: center;
+  will-change: transform;
+  ul {
+    position: absolute;
+    top: 80%;
+    left: 60px;
+    transform: translateY(calc(-50% - 3em));
+    font-size: 3em;
+    li {
+      color: whitesmoke;
+      margin-bottom: 1em;
+      font-weight: 500;
+      overflow: hidden;
+      span {
+        display: block;
+        transform: translate3d(0, 100%, 0);
+        transition: transform 400ms ease-out;
+      }
+    }
+    li:nth-child(1) {
+      span {
+        transition-delay: $transitionDuration / 3;
+      }
+    }
+    li:nth-child(2) {
+      span {
+        transition-delay: $transitionDuration / 3 + 100ms;
+      }
+    }
+    li:nth-child(3) {
+      span {
+        transition-delay: $transitionDuration / 3 + 150ms;
+      }
+    }
+  }
+}
+body {
+
+}
+
+.main-content {
+  overflow: hidden;
+  visibility: visible;
+  padding: $navHeight;
+  height: 300vh;
+  background: ghostwhite;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: auto;
+  text-align: center;
+  transition: transform $transitionDuration ease-out, border-radius 0.6s ease-out, visibility $transitionDuration ease-out;
+  img {
+    border-radius: 10px;
+  }
+  section {
+    margin-bottom: 24px;
+  }
+}
+body.menu-open {
+  overflow: hidden;
+  .side-content {
+    transform: translate3d(0, 0, 0);
+    ul li span {
+      transform: translate3d(0,0,0);
+      overflow: hidden;
+      width: fit-content;
+      @include define-underline-on-hover();
+      // HOVER MENU
+    }
+  }
+  .main-content {
+    transform: translate3d($widthSideMenu, $navHeight, 0);
+    border-radius: 20px;
+  }
+}
+@media screen and (max-width: 1024px){
+  body.menu-open {
+    .main-content {
+      transform: translate3d(100%, 50%, 0);
+      visibility: hidden;
+    }
+  }
+}
+.menu-burger {
+  align-items: center;
+  display: flex;
+  font-size: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+.dashes {
+  align-items: center;
+  display: flex;
+  height: 26px;
+  position: relative;
+  width: 26px;
+}
+.dash {
+  border-top: 1px solid;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  width: 100%;
+}
+.dash:nth-child(1) {
+  transform: translate(-50%,-4px);
+}
+.dash:nth-child(2) {
+    display: block;
+    left: 0;
+    transform: none;
+}
+.dash:nth-child(3) {
+  transform: translate(-50%,4px);
+}
+.burger {
+  margin-left: 1.2rem;
+}
+
+.menu-open {
+  .dash:nth-child(1) {
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
+  .dash:nth-child(2) {
+    transform: scaleX(0);
+  }
+  .dash:nth-child(3) {
+    transform: translate(-50%,-50%) rotate(45deg);
+  }
+}
+$color: #FFF;
+
+.wrap {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  h2 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .hero-btn {
+    @include makeButton(white, black, black, white);
+  }
+}
+@media screen and (max-width: 1024px){
+  nav {
+    padding: 5%;
+  }
+  .wrap {
+    display: none;
+  }
+  .main-content {
+    margin: 0;
+    padding: 60px 0 0;
+    img {
+      border-radius: 0;
+    }
+  }
+}
+
+footer {
+  padding-top: 5%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 2.5em;
+    position: relative;
+  }
+  .footer-block {
+    //width: 30%;
+    a svg {
+      &:nth-child(1) {
+        margin-right: 30px;
+      }
+      width: 30px;
+      fill: white;
+    }
+  }
+  .footer-block a:nth-child(2) {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .footer-block:nth-child(3) {
+    display: flex;
+  }
+}
+.link-footer {
+  @include define-underline-on-hover;
+}
+@media screen and (max-width: 1024px){
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .footer-block {
+    margin-bottom: 5%;
+  }
+}
+.footer-foot {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  div {
+    width: 100%;
+  }
+  .footer-line {
+    margin-top: 5%;
+    display: flex;
+    white-space: pre;
+    justify-content: center;
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+div.footer-foot > div > p:nth-child(2) {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.content-title {
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+  font-size: 2rem;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+.presentation p {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+  text-align: left;
+  text-justify: inter-word;
+}

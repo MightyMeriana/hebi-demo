@@ -208,7 +208,6 @@ nav .burger {
   overflow: hidden;
   visibility: visible;
   padding: 60px;
-  height: 300vh;
   background: ghostwhite;
   z-index: 1;
   top: 0;

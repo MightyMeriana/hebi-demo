@@ -128,9 +128,6 @@ burgerButton.addEventListener('click', function () {
 var _navbar = _interopRequireDefault(require("./js/navbar.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// here you put all the js you want.
-var navbar = new _navbar.default();
 },{"./js/navbar.js":"src/js/navbar.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -159,7 +156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56434" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59409" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
